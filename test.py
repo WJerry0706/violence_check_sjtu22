@@ -9,7 +9,7 @@ def main():
     gpu_id = [0]
     batch_size = 256
     log_name = "train_logs/resnet50_pretrain_test"
-    checkpoint_path = log_name + "/version_5/checkpoints/resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt"  # 替换为你的模型检查点路径
+    checkpoint_path = log_name + "/version_6/checkpoints/resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt"  # 替换为你的模型检查点路径
 
     print(f"{log_name} gpu: {gpu_id}, batch size: {batch_size}")
 
