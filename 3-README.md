@@ -5,7 +5,7 @@
 
 .ckpt文件由于传不下了,又不好放huggingface,就和我们添加的数据集一起传到了交大云盘中: https://jbox.sjtu.edu.cn/v/list/self/1804178151677366278
 
-下载完`resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt`文件后,放到
+下载完`resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt`文件后,放到`train_logs/resnet50_pretrain_test/version_6/checkpoints`目录下.
 
 将待分类的图片放置到`violence/test`目录下，然后命令行调用`classify.py`。
 
