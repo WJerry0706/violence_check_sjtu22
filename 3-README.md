@@ -1,4 +1,4 @@
-# violence_check_sjtu2024_wengjieyu
+# violence_check_sjtu2024_group3_wengjieyu
 这是SJTU2024年人工智能导论课大作业。组号:3;组员：翁解语，孔珺晓，毛锐。
 
 `classfy.py`文件调试说明：
