@@ -7,7 +7,7 @@
 
 下载完`resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt`文件后,放到`train_logs/resnet50_pretrain_test/version_6/checkpoints`目录下.
 
-将待分类的图片放置到`violence/test`目录下，然后命令行调用`classify.py`。
+将待分类的图片放置到`violence/test`目录下，然后在`violence_check_sjtu22`目录下命令行调用`classify.py`。
 
 结果将输出在命令行，并以列表形式保存为`output\predictions_list_{current_time}.txt`和以张量形式保存为`predictions_tensor_{current_time}.pt`。
 
