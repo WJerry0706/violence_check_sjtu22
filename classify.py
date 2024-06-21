@@ -5,12 +5,12 @@ from PIL import Image
 from model import ViolenceClassifier
 from datetime import datetime
 
-
 class ViolenceClass:
-    def __init__(self, checkpoint_path):
+    def __init__(self, checkpoint_path, batch_size=16):
         # 加载模型
         self.model = ViolenceClassifier.load_from_checkpoint(checkpoint_path)
         self.model.eval()  # 设置模型为评估模式
+        self.batch_size = batch_size
 
         # 如果有GPU，移动模型到GPU
         if torch.cuda.is_available():
@@ -43,10 +43,14 @@ class ViolenceClass:
     def classify_images_in_directory(self, directory_path):
         image_paths = [os.path.join(directory_path, img_name) for img_name in os.listdir(directory_path) if
                        img_name.endswith(('.png', '.jpg', '.jpeg'))]
-        images = [self.transforms(Image.open(img_path).convert('RGB')) for img_path in image_paths]
-        tensor = torch.stack(images)  # 将所有图像堆叠成一个张量
-        return self.classify(tensor)
-
+        all_predictions = []
+        for i in range(0, len(image_paths), self.batch_size):
+            batch_paths = image_paths[i:i + self.batch_size]
+            images = [self.transforms(Image.open(img_path).convert('RGB')) for img_path in batch_paths]
+            tensor = torch.stack(images)  # 将所有图像堆叠成一个张量
+            predictions = self.classify(tensor)
+            all_predictions.extend(predictions)
+        return all_predictions
 
 # 测试接口类
 if __name__ == "__main__":
@@ -55,7 +59,7 @@ if __name__ == "__main__":
     checkpoint_path = log_name + "/version_6/checkpoints/resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt"  # 替换为你的模型检查点路径
 
     # 创建接口类实例
-    violence_classifier = ViolenceClass(checkpoint_path)
+    violence_classifier = ViolenceClass(checkpoint_path, batch_size=16)
 
     # violence/test 目录路径
     test_directory = "violence/test"
