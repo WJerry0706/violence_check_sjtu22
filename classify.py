@@ -51,7 +51,8 @@ class ViolenceClass:
 # 测试接口类
 if __name__ == "__main__":
     # 模型检查点路径
-    checkpoint_path = "train_logs/resnet50_pretrain_test/version_5/checkpoints/resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt"
+    log_name = "train_logs/resnet50_pretrain_test"
+    checkpoint_path = log_name + "/version_6/checkpoints/resnet50_pretrain_test-epoch=16-val_loss=0.06.ckpt"  # 替换为你的模型检查点路径
 
     # 创建接口类实例
     violence_classifier = ViolenceClass(checkpoint_path)
